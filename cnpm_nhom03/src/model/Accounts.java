@@ -1,15 +1,15 @@
 package model;
 
 public class Accounts {
-    private int id;
+    private String id;
     private String userName;
     private String password;
     private String email;
     private String address;
     private String numberPhone;
-    private String type;
+    private int type;
 
-    public Accounts(int id, String userName, String password, String email, String numberPhone, String type) {
+    public Accounts(String id, String userName, String password, String email, String numberPhone, int type) {
         this.id = id;
         this.userName = userName;
         this.password = password;
@@ -32,11 +32,11 @@ public class Accounts {
 
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -80,11 +80,11 @@ public class Accounts {
         this.numberPhone = numberPhone;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 }

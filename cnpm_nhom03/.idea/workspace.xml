@@ -1,21 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="cnpm_nhom03:war exploded" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcfdf5e6-5884-4325-bbaa-6a670e9544f3" name="Default Changelist" comment="" />
+    <list default="true" id="17bb557c-812c-4175-9eda-1e48697168db" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectId" id="1fcjmjbRQdhcyZxt6IDDCRScaRZ" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Jsp File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/web/login.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="ProjectId" id="1f9xU9DPHSuckGFHAuFS9iGPu6v" />
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../lib" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/mysql-connector-java-8.0.21.jar!/" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\HuuHai\IdeaProjects\cnpm_nhom03\web" />
+      <recent name="C:\Users\HuuHai\IdeaProjects\cnpm_nhom03\web\css" />
+      <recent name="C:\Users\HuuHai\IdeaProjects\cnpm_nhom03\src" />
+      <recent name="C:\Users\HuuHai\IdeaProjects\cnpm_nhom03\src\controller" />
+      <recent name="C:\Users\HuuHai\IdeaProjects\cnpm_nhom03\src\model" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -29,19 +65,32 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="Tomcat 8.5.451" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.451" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/cnpm_nhom03/" />
-      <option name="UPDATING_POLICY" value="restart-server" />
+  <component name="RunManager" selected="Tomcat Server.TOMCAT">
+    <configuration name="DBConnection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="connection.DBConnection" />
+      <module name="cnpm_nhom03" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="connection.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TOMCAT" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.34" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/" />
+      <option name="UPDATING_POLICY" value="redeploy-artifacts" />
       <deployment>
         <artifact name="cnpm_nhom03:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="/cnpm_nhom03" />
+            <option name="CONTEXT_PATH" value="/" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="Unnamed_cnpm_nhom03" />
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_cnpm_nhom03_2" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -49,7 +98,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="58474" />
+        <option name="DEBUG_PORT" value="54484" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -103,22 +152,60 @@
         </option>
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.DBConnection" />
+      <item itemvalue="Tomcat Server.TOMCAT" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.DBConnection" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="bcfdf5e6-5884-4325-bbaa-6a670e9544f3" name="Default Changelist" comment="" />
-      <created>1596524435131</created>
+      <changelist id="17bb557c-812c-4175-9eda-1e48697168db" name="Default Changelist" comment="" />
+      <created>1595644122553</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1596524435131</updated>
-      <workItem from="1596524439011" duration="130000" />
+      <updated>1595644122553</updated>
+      <workItem from="1595644125508" duration="5293000" />
+      <workItem from="1595667096096" duration="4164000" />
+      <workItem from="1595682215791" duration="8335000" />
+      <workItem from="1595739858030" duration="13207000" />
+      <workItem from="1595769290204" duration="14476000" />
+      <workItem from="1595814936247" duration="11269000" />
+      <workItem from="1595831514937" duration="2142000" />
+      <workItem from="1596077048125" duration="9483000" />
+      <workItem from="1596091377645" duration="4691000" />
+      <workItem from="1596117070244" duration="621000" />
+      <workItem from="1596144116555" duration="918000" />
+      <workItem from="1596162749124" duration="15204000" />
+      <workItem from="1596200903323" duration="15114000" />
+      <workItem from="1596267271019" duration="263000" />
+      <workItem from="1596267754585" duration="9977000" />
+      <workItem from="1596287540361" duration="9212000" />
+      <workItem from="1596330155850" duration="9564000" />
+      <workItem from="1596350489505" duration="9741000" />
+      <workItem from="1596376249635" duration="3900000" />
+      <workItem from="1596431675601" duration="10718000" />
+      <workItem from="1596512942873" duration="5508000" />
+      <workItem from="1596548221302" duration="15206000" />
+      <workItem from="1596607798816" duration="20522000" />
+      <workItem from="1596634062563" duration="19273000" />
+      <workItem from="1596655036187" duration="1776000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/cnpm_nhom03$DBConnection.ic" NAME="DBConnection Coverage Results" MODIFIED="1596644135299" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>connection.*</FILTER>
+    </SUITE>
   </component>
 </project>

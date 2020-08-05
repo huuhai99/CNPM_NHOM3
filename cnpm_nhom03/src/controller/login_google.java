@@ -2,7 +2,7 @@ package controller;
 
 import dao.AccountDao;
 import model.GooglePojo;
-import util.GoogleUtils;
+import utils.GoogleUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,11 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.SQLException;
 
 @WebServlet("/login_google")
 public class login_google extends HttpServlet {
-    AccountDao accountDao = new AccountDao();
     private static final long serialVersionUID = 1L;
 
     public login_google() {
@@ -24,11 +22,15 @@ public class login_google extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+     // lấy code
         String code = request.getParameter("code");
+
+        // kiểm tra code
         if (code == null || code.isEmpty()) {
             RequestDispatcher dis = request.getRequestDispatcher("login.jsp");
             dis.forward(request, response);
         } else {
+
             String accessToken = GoogleUtils.getToken(code);
             GooglePojo googlePojo = GoogleUtils.getUserInfo(accessToken);
             request.setAttribute("id", googlePojo.getId());
@@ -36,9 +38,11 @@ public class login_google extends HttpServlet {
             request.setAttribute("email", googlePojo.getEmail());
 
 
+            // kiểm tra đã có trong database
             if(AccountDao.checkIDGG(googlePojo.getId()) == true) {
 
-            } else {
+            }else {
+                // thêm vào datase
                AccountDao.InsertGGToDB(googlePojo.getEmail(),googlePojo.getId());
 
             }

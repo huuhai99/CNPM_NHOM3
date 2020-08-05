@@ -1,8 +1,9 @@
 package controller;
 
 import dao.AccountDao;
-import model.Users;
-import util.UtilsPath;
+import model.User;
+import model.User;
+import utils.UtilsPath;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +16,7 @@ import java.util.Date;
 
 @WebServlet("/DoRegister")
 public class doRegister extends HttpServlet {
-    Users taiKhoan = null;
+    User taiKhoan = null;
     AccountDao taiKhoanDao = new AccountDao();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,14 +29,15 @@ public class doRegister extends HttpServlet {
         kiemTraThongTin(taiKhoan, request, response);
     }
 
-    //    Phương thức trả về trang đăng ký:
-    private void denTrangDangKy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    //     3: Phương thức trả về trang đăng ký:
+        private void denTrangDangKy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/register.jsp");
         rd.forward(request, response);
     }
-    // Phương thức lấy thông tn Đăng ký
-    private Users thongTinDangKy(HttpServletRequest request) {
-        Users tk = new Users();
+
+    // 5.1. Phương thức lấy thông tn Đăng ký
+    private User thongTinDangKy(HttpServletRequest request) {
+        User tk = new User();
         tk.setName(request.getParameter("ten"));
         tk.setEmail(request.getParameter("email"));
         tk.setPassword(request.getParameter("password"));
@@ -44,8 +46,9 @@ public class doRegister extends HttpServlet {
 
         return tk;
     }
-    // Phương thức kiểm tra thông tin Đăng ký
-    private void kiemTraThongTin(Users taiKhoan, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    // 5.2. Phương thức kiểm tra thông tin Đăng ký đã nhập ở form Đăng ký
+    private void kiemTraThongTin(User taiKhoan, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = taiKhoan.getName();
         String email = taiKhoan.getEmail();
         String phone = taiKhoan.getPhone();
@@ -58,10 +61,10 @@ public class doRegister extends HttpServlet {
         String email_error = "";
         String password_error = "";
         String repass_error = "";
-        String phone_error ="";
-        String adress_error ="";
+        String phone_error = "";
+        String adress_error = "";
 
-        //Kiểm tra tên đăng nhập:
+        // 5.2.1.Hiển thị thông sai nếu nhập thông tin sai hoặc chưa nhập
         if (name.equals("")) {
             name_error = "✖ Vui lòng nhập tên!";
         } else if (taiKhoanDao.kiemTraTonTai(name) == true) {
@@ -122,18 +125,21 @@ public class doRegister extends HttpServlet {
         String url = "/register.jsp";
 
         try {
-            if (name_error.length() == 0 && email_error.length() == 0 && password_error.length() == 0 && repass_error.length() == 0 ) {
+            // Nếu Đăng ký thành công sẽ qua trang Đăng nhập
+            if (name_error.length() == 0 && email_error.length() == 0 && password_error.length() == 0 && repass_error.length() == 0) {
                 Date id = new Date();
-                taiKhoan = new Users("" + id.getTime(), name, email,phone,adress, taiKhoanDao.maHoaMD5(password), 1);
+                taiKhoan = new User("" + id.getTime(), name, email, phone, adress, password, 1);
                 taiKhoanDao.themTaiKhoan(taiKhoan);
-                url = "/login.jsp";
+                response.sendRedirect(UtilsPath.getPath("login.jsp"));
+                // Còn nếu nhập sai thì vẫn ở trang Đăng ký
             } else {
-                url = "/register.jsp";
+                url="/register.jsp";
+
+                RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
+                rd.forward(request, response);
             }
 
-            response.sendRedirect(UtilsPath.fullPath("login.jsp"));
-//            RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
-//            rd.forward(request, response);
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }

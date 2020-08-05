@@ -1,14 +1,12 @@
 package dao;
 
+import connection.DBConnection;
+import model.Accounts;
+import model.User;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
-import com.restfb.types.User;
-import connection.DBConnection;
-import model.Accounts;
-import model.Users;
-
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,9 +16,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AccountDao {
-    public boolean checkAccount(String email, String password)  {
+    // kiểm tra có account hay chưa
+    public boolean checkAccount(String username, String password) {
         Connection connection = DBConnection.getConnection();
-        String sql = "SELECT * FROM account WHERE email = '" + email + "' AND password ='" + password + "'";
+        String sql = "SELECT * FROM account WHERE username = '" + username + "' AND password ='" + password + "'";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -33,9 +32,10 @@ public class AccountDao {
         return false;
 
     }
-    public static boolean checkIDFB(String ID)  {
+    
+    public static boolean checkIDFB(String ID) {
         Connection con = DBConnection.getConnection();
-        String sql = "SELECT * FROM account WHERE  facebookID = ? ";
+        String sql = "SELECT * FROM acc WHERE  facebookID = ? ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, ID);
@@ -49,9 +49,9 @@ public class AccountDao {
         return false;
 
     }
-    public static boolean checkIDGG(String ID)  {
+    public static boolean checkIDGG(String ID) {
         Connection connection = DBConnection.getConnection();
-        String sql = "SELECT * FROM account WHERE  googleID = ? ";
+        String sql = "SELECT * FROM acc WHERE  googleID = ? ";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, ID);
@@ -66,18 +66,17 @@ public class AccountDao {
 
     }
 
-    public Accounts checkLogin(String email, String password)  {
+    public Accounts checkLogin(String username, String password) {
         Connection connection = DBConnection.getConnection();
-        String sql = "SELECT * FROM account WHERE email = '" + email + "' AND password ='" + password + "'";
+        String sql = "SELECT * FROM account WHERE username = '" + username + "' AND password ='" + password + "'";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Accounts accountsBean = new Accounts();
-                accountsBean.setId(rs.getInt("id"));
+                accountsBean.setId(rs.getString("id"));
                 accountsBean.setUserName(rs.getString("username"));
                 accountsBean.setPassword(rs.getString("password"));
-                accountsBean.setType(rs.getString("type"));
                 accountsBean.setNumberPhone(rs.getString("numberphone"));
                 accountsBean.setEmail(rs.getString("email"));
                 accountsBean.setAddress(rs.getString("address"));
@@ -89,53 +88,13 @@ public class AccountDao {
         return null;
     }
 
-    public static User checkLoginFB(String facebookID) {
-        PreparedStatement stm = null;
-        ResultSet rs = null;
-        Connection con = null;
-        try {
-            con = DBConnection.getConnection();
-            String sql = "SELECT * FROM account WHERE facebookID = ? ";
-            stm = con.prepareStatement(sql);
-            stm.setString(1, facebookID);
-            rs = stm.executeQuery();
-            if (rs.next()) {
-                String faceID = rs.getString(8);
-                String faceLink = rs.getString(9);
-
-                User userInfo = new User();
-                userInfo.setId(faceID.trim());
-                userInfo.setLink(faceLink);
-
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (stm != null) {
-                    stm.close();
-                }
-                if (con != null) {
-                    con.close();
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-
-        }
-        return null;
-    }
 
     public static boolean InsertFBToDB(String ID, String name) {
         PreparedStatement stm = null;
         Connection con = null;
         try {
             con = DBConnection.getConnection();
-            String sql = "INSERT INTO account (facebookID,username) VALUES (?,?)";
+            String sql = "INSERT INTO acc (facebookID,username) VALUES (?,?)";
             stm = con.prepareStatement(sql);
             stm.setString(1, ID);
             stm.setString(2, name);
@@ -167,7 +126,7 @@ public class AccountDao {
         Connection con = null;
         try {
             con = DBConnection.getConnection();
-            String sql = "INSERT INTO account (email, googleID) VALUES (?,?)";
+            String sql = "INSERT INTO acc (email, googleID) VALUES (?,?)";
             stm = con.prepareStatement(sql);
             stm.setString(1, email);
             stm.setString(2, googleID);
@@ -195,6 +154,7 @@ public class AccountDao {
         return false;
     }
 
+    // Register
     //Kiểm tra chuỗi hợp lệ:
     public static boolean kiemTraChuoi(String regex, String input) {
         Pattern pattern = Pattern.compile(regex);
@@ -203,27 +163,27 @@ public class AccountDao {
     }
 
     //Mã hóa mật khẩu MD5:
-    public static String maHoaMD5(String str) {
-        byte[] defaultBytes = str.getBytes();
-        try {
-            MessageDigest algorithm = MessageDigest.getInstance("MD5");
-            algorithm.reset();
-            algorithm.update(defaultBytes);
-            byte messageDigest[] = algorithm.digest();
-            StringBuffer hexString = new StringBuffer();
-            for (int i = 0; i < messageDigest.length; i++) {
-                String hex = Integer.toHexString(0xFF & messageDigest[i]);
-                if (hex.length() == 1) {
-                    hexString.append('0');
-                }
-                hexString.append(hex);
-            }
-            str = hexString + "";
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return str;
-    }
+//    public static String maHoaMD5(String str) {
+//        byte[] defaultBytes = str.getBytes();
+//        try {
+//            MessageDigest algorithm = MessageDigest.getInstance("MD5");
+//            algorithm.reset();
+//            algorithm.update(defaultBytes);
+//            byte messageDigest[] = algorithm.digest();
+//            StringBuffer hexString = new StringBuffer();
+//            for (int i = 0; i < messageDigest.length; i++) {
+//                String hex = Integer.toHexString(0xFF & messageDigest[i]);
+//                if (hex.length() == 1) {
+//                    hexString.append('0');
+//                }
+//                hexString.append(hex);
+//            }
+//            str = hexString + "";
+//        } catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        }
+//        return str;
+//    }
 
     //Kiem tra tai khoan nay da ton tai hay chua:
     public boolean kiemTraTonTai(String userName) {
@@ -242,17 +202,18 @@ public class AccountDao {
         return false;
     }
 
-    //Them tai khoan vao database:
-    public void themTaiKhoan(Users taiKhoan) {
+    // 5.2.3. Thêm tài khoản vào Database
+    public void themTaiKhoan(User taiKhoan) {
+        // insert vào bảng account các trường đã set, get
         String sql = "INSERT INTO account VALUE (?,?,?,?,?,?,?)";
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement pst = conn.prepareStatement(sql);
-            pst.setString(1, taiKhoan.getId());
+            pst.setString(1, taiKhoan.getMaTK());
             pst.setString(2, taiKhoan.getName());
             pst.setString(3, taiKhoan.getEmail());
-            pst.setString(4, taiKhoan.getPhone());
-            pst.setString(5, taiKhoan.getAdress());
+            pst.setString(4, taiKhoan.getAdress());
+            pst.setString(5, taiKhoan.getPhone());
             pst.setString(6, taiKhoan.getPassword());
             pst.setInt(7, taiKhoan.getQuyen());
             pst.executeUpdate();
@@ -262,4 +223,25 @@ public class AccountDao {
         }
     }
 
+    public boolean updateUser(Accounts accounts) {
+        PreparedStatement stm = null;
+        Connection con = null;
+        boolean f = false;
+        try {
+            con = DBConnection.getConnection();
+            String sql = "UPDATE `cnpm_03`.`account` SET  `username` = ?, `email` = ?, `numberphone` = ?, `address`=? WHERE `id` = ?";
+            stm = con.prepareStatement(sql);
+            stm.setString(1, accounts.getUserName());
+            stm.setString(2, accounts.getEmail());
+            stm.setString(3, accounts.getNumberPhone());
+            stm.setString(4, accounts.getAddress());
+            stm.setString(5, accounts.getId());
+
+            stm.executeUpdate();
+            f = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return f;
+    }
 }
