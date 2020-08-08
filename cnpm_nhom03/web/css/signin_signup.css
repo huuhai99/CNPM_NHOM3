@@ -11,17 +11,9 @@
     border: transparent;
 }
 
-.modal-content .btn-success:hover {
-    background: #c29a67;
-}
-
 .modal-content .btn-danger {
     background: #76533b;
     border: transparent;
-}
-
-.modal-content .btn-danger:hover {
-    filter: brightness(70%);
 }
 
 .modal-header {

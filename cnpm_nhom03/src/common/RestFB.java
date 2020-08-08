@@ -12,7 +12,7 @@ import org.apache.http.client.fluent.Request;
 import java.io.IOException;
 
 public class RestFB {
-// lấy token (code)
+    
     public static String getToken(final String code) throws ClientProtocolException, IOException {
         String link = String.format(Constants.FACEBOOK_LINK_GET_TOKEN, Constants.FACEBOOK_APP_ID, Constants.FACEBOOK_APP_SECRET, Constants.FACEBOOK_REDIRECT_URL, code);
         String response = Request.Get(link).execute().returnContent().asString();
@@ -20,10 +20,10 @@ public class RestFB {
         String accessToken = jobj.get("access_token").toString().replaceAll("\"", "");
         return accessToken;
     }
-
+    
     public static User getUserInfo(String accessToken) {
         FacebookClient facebookClient = new DefaultFacebookClient(accessToken, Constants.FACEBOOK_APP_SECRET, Version.LATEST);
         return facebookClient.fetchObject("me", User.class);
     }
-
+    
 }

@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/signin_signup.css">
     <link rel="stylesheet" href="css/userStyle.css">
+    <link rel="stylesheet" href="css/search.css">
 
     <style>
         .product-description-1 {
@@ -49,11 +50,8 @@
 
 </head>
 <%
-
     Accounts account = (Accounts) session.getAttribute("account");
-    if (session.getAttribute("account")==null) {
-        response.sendRedirect("login.jsp");
-    }
+
 %>
 <body>
 <!--Header-->
@@ -64,20 +62,20 @@
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
-        <div class="collapse navbar-collapse" id="ftco-nav" class="menu">
+        <div class="collapse navbar-collapse menu" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
+                <li class="search_and_icon">
+                    <input type="text" class="form-control search align-left-search" placeholder="Tìm kiếm......">
+                    <a class="icon-search align-left-search"></a>
+                </li>
                 <li class="nav-item active"><a href="index.jsp" class="nav-link">Trang chủ</a></li>
                 <li class="nav-item"><a href="menu.html" class="nav-link">Thực đơn</a></li>
-                <!--                <li class="nav-item"><a href="services.html" class="nav-link">Dịch vụ</a></li>-->
-                <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-                <!--                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>-->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <a class="dropdown-item" href="about.html">Về chúng tôi</a>
                         <a class="dropdown-item" href="shop.html">Cửa hàng</a>
-                        <a class="dropdown-item" href="services.html">Dịch vụ</a>
                         <a class="dropdown-item" href="product-details.html">Chi tiết sản phẩm</a>
                         <a class="dropdown-item" href="cart.html">Giỏ hàng</a>
                         <a class="dropdown-item" href="checkout.html">Thanh toán</a>
@@ -98,18 +96,18 @@
                         } else {
 
                         %>
-                        <a class="dropdown-item" href="<%=UtilsPath.getPath("LoginController")%>" class="dropdown-item">Đăng
+                        <a class="dropdown-item" href="<%=UtilsPath.getPath("LoginController")%>">Đăng
                             xuất</a>
                         <%
                             }
                         %>
                         <%
-                            if(session.getAttribute("userFB") == null && session.getAttribute("userGG") == null){
+                            if (session.getAttribute("userFB") == null && session.getAttribute("userGG") == null) {
 
 
                         %>
 
-                        <a class="dropdown-item" href="IfoUser.jsp">Thông tin cá nhân</a>
+                        <a class="dropdown-item" href="infoUser.jsp">Thông tin cá nhân</a>
                         <%
                             }
                         %>
@@ -123,6 +121,7 @@
         </div>
     </div>
 </nav>
+
 
 <!--Content-->
 <section class="home-slider owl-carousel">
@@ -174,166 +173,11 @@
                     <h1 class="mb-4">Creamy Hot and Ready to Serve</h1>
                     <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the
                         necessary regelialia.</p>
-                    <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Đặt mua</a> <a href="#"
-                                                                                              class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">
+                    <p><a href="shop.html" class="btn btn-primary p-3 px-xl-4 py-xl-3">Đặt mua</a> <a href="#"
+                                                                                                      class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">
                         Thực đơn</a></p>
                 </div>
 
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="ftco-about d-md-flex">
-    <div class="one-half img" style="background-image: url(images/about.jpg);"></div>
-    <div class="one-half ftco-animate">
-        <div class="overlap">
-            <div class="heading-section ftco-animate ">
-                <span class="subheading">Khám phá</span><br>
-                <h2 class="mb-4">Câu chuyện<br>thương hiệu</h2>
-            </div>
-            <div>
-                <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would
-                    have been rewritten a thousand times and everything that was left from its origin would be the word
-                    "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing
-                    the copy said could convince her and so it didn’t take long until a few insidious Copy Writers
-                    ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they
-                    abused her for their.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="ftco-section ftco-services">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 ftco-animate">
-                <div class="media d-block text-center block-6 services">
-                    <div class="icon d-flex justify-content-center align-items-center mb-5">
-                        <span class="flaticon-choices"></span>
-                    </div>
-                    <div class="media-body">
-                        <h3 class="heading">Đặt mua dễ dàng</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                            unorthographic.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 ftco-animate">
-                <div class="media d-block text-center block-6 services">
-                    <div class="icon d-flex justify-content-center align-items-center mb-5">
-                        <span class="flaticon-delivery-truck"></span>
-                    </div>
-                    <div class="media-body">
-                        <h3 class="heading">Giao hàng nhanh</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                            unorthographic.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 ftco-animate">
-                <div class="media d-block text-center block-6 services">
-                    <div class="icon d-flex justify-content-center align-items-center mb-5">
-                        <span class="flaticon-coffee-bean"></span></div>
-                    <div class="media-body">
-                        <h3 class="heading">Chất lượng cà phê</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                            unorthographic.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="ftco-section">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6 pr-md-5">
-                <div class="heading-section text-md-right ftco-animate">
-                    <span class="subheading">Khám phá</span><br>
-                    <h2 class="mb-4">Thực đơn<br>của chúng tôi</h2>
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and
-                        Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the
-                        coast of the Semantics, a large language ocean.</p>
-                    <p><a href="menu.html" class="btn btn-primary btn-outline-primary px-4 py-3">Xem toàn bộ thực
-                        đơn</a></p>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="menu-entry">
-                            <a href="#" class="img" style="background-image: url(images/ca_phe_may/americano.jpg);"></a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="menu-entry mt-lg-4">
-                            <a href="#" class="img"
-                               style="background-image: url(images/ca_phe_may/cappuccino.jpg);"></a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="menu-entry">
-                            <a href="#" class="img"
-                               style="background-image: url(images/ca_phe_may/espressonong.jpg);"></a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="menu-entry mt-lg-4">
-                            <a href="#" class="img" style="background-image: url(images/ca_phe_may/latte.jpg);"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);"
-         data-stellar-background-ratio="0.5">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div class="row">
-                    <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-                        <div class="block-18 text-center">
-                            <div class="text">
-                                <div class="icon"><span class="flaticon-coffee-cup"></span></div>
-                                <strong class="number" data-number="3">0</strong>
-                                <span>Chi nhánh</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-                        <div class="block-18 text-center">
-                            <div class="text">
-                                <div class="icon"><span class="flaticon-coffee-cup"></span></div>
-                                <strong class="number" data-number="5">0</strong>
-                                <span>Giải thưởng</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-                        <div class="block-18 text-center">
-                            <div class="text">
-                                <div class="icon"><span class="flaticon-coffee-cup"></span></div>
-                                <strong class="number" data-number="999">0</strong>
-                                <span>Khách hàng hài lòng</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-                        <div class="block-18 text-center">
-                            <div class="text">
-                                <div class="icon"><span class="flaticon-coffee-cup"></span></div>
-                                <strong class="number" data-number="3">0</strong>
-                                <span>Nhân viên</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -345,8 +189,6 @@
             <div class="col-md-7 heading-section ftco-animate text-center">
                 <span class="subheading">Khám phá</span><br>
                 <h2 class="mb-4">Sản phẩm bán chạy nhất</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-                    the blind texts.</p>
             </div>
         </div>
         <div class="row">
@@ -405,8 +247,6 @@
             <div class="col-md-7 heading-section text-center ftco-animate">
                 <span class="subheading">Khám phá</span><br>
                 <h2 class="mb-4">Sản phẩm của chúng tôi</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-                    the blind texts.</p>
             </div>
         </div>
         <div class="row d-md-flex">
@@ -719,61 +559,90 @@
     </div>
 </section>
 
-<section class="ftco-section">
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url(images/bg_2.jpg);"
+         data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
     <div class="container">
-        <div class="row justify-content-center mb-5 pb-3">
-            <div class="col-md-7 heading-section ftco-animate text-center">
-                <h2 class="mb-4">Bài viết mới</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-                    the blind texts.</p>
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18 text-center">
+                            <div class="text">
+                                <div class="icon"><span class="flaticon-coffee-cup"></span></div>
+                                <strong class="number" data-number="3">0</strong>
+                                <span>Chi nhánh</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18 text-center">
+                            <div class="text">
+                                <div class="icon"><span class="flaticon-coffee-cup"></span></div>
+                                <strong class="number" data-number="5">0</strong>
+                                <span>Giải thưởng</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18 text-center">
+                            <div class="text">
+                                <div class="icon"><span class="flaticon-coffee-cup"></span></div>
+                                <strong class="number" data-number="999">0</strong>
+                                <span>Khách hàng hài lòng</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18 text-center">
+                            <div class="text">
+                                <div class="icon"><span class="flaticon-coffee-cup"></span></div>
+                                <strong class="number" data-number="3">0</strong>
+                                <span>Nhân viên</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row d-flex">
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry align-self-stretch">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
-                    </a>
-                    <div class="text py-4 d-block">
-                        <div class="meta">
-                            <div><a href="#">Sept 10, 2018</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                        </div>
-                        <h3 class="heading mt-2"><a href="#">The Delicious Pizza</a></h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary
-                            regelialia.</p>
+    </div>
+</section>
+
+<section class="ftco-section ftco-services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 ftco-animate">
+                <div class="media d-block text-center block-6 services">
+                    <div class="icon d-flex justify-content-center align-items-center mb-5">
+                        <span class="flaticon-choices"></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Đặt mua dễ dàng</h3>
+                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
+                            unorthographic.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry align-self-stretch">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
-                    </a>
-                    <div class="text py-4 d-block">
-                        <div class="meta">
-                            <div><a href="#">Sept 10, 2018</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                        </div>
-                        <h3 class="heading mt-2"><a href="#">The Delicious Pizza</a></h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary
-                            regelialia.</p>
+            <div class="col-md-4 ftco-animate">
+                <div class="media d-block text-center block-6 services">
+                    <div class="icon d-flex justify-content-center align-items-center mb-5">
+                        <span class="flaticon-delivery-truck"></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Giao hàng nhanh</h3>
+                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
+                            unorthographic.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry align-self-stretch">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
-                    </a>
-                    <div class="text py-4 d-block">
-                        <div class="meta">
-                            <div><a href="#">Sept 10, 2018</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                        </div>
-                        <h3 class="heading mt-2"><a href="#">The Delicious Pizza</a></h3>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary
-                            regelialia.</p>
+            <div class="col-md-4 ftco-animate">
+                <div class="media d-block text-center block-6 services">
+                    <div class="icon d-flex justify-content-center align-items-center mb-5">
+                        <span class="flaticon-coffee-bean"></span></div>
+                    <div class="media-body">
+                        <h3 class="heading">Chất lượng cà phê</h3>
+                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
+                            unorthographic.</p>
                     </div>
                 </div>
             </div>
@@ -802,10 +671,10 @@
                 <div class="ftco-footer-widget mb-4 ml-md-4">
                     <h2 class="ftco-heading-2">Thành viên</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block"><i class="icon-user"></i>&nbsp;&nbsp;Vũ Huỳnh Như Anh</a>
+                        <li><a href="https://www.facebook.com/jenny.vu.9803" class="py-2 d-block"><i class="icon-user"></i>&nbsp;&nbsp;Vũ Huỳnh Như Anh</a>
                         </li>
-                        <li><a href="#" class="py-2 d-block"><i class="icon-user"></i>&nbsp;&nbsp;Nguyễn Hữu Hải</a>
-                        <li><a href="#" class="py-2 d-block"><i class="icon-user"></i>&nbsp;&nbsp;Vũ Quốc Huy</a></li>
+                        <li><a href="https://www.facebook.com/nguyenhuuhai1999" class="py-2 d-block"><i class="icon-user"></i>&nbsp;&nbsp;Nguyễn Hữu Hải</a>
+                        <li><a href="https://www.facebook.com/vqhuy.8799" class="py-2 d-block"><i class="icon-user"></i>&nbsp;&nbsp;Vũ Quốc Huy</a></li>
                         </li>
                         <!--                        <li><a href="#" class="py-2 d-block">Mixed</a></li>-->
                     </ul>

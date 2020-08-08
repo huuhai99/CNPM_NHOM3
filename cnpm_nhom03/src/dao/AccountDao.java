@@ -2,10 +2,7 @@ package dao;
 
 import connection.DBConnection;
 import model.Accounts;
-import model.User;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +13,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AccountDao {
-    // kiểm tra có account hay chưa
+
+    // Dang nhap
     public boolean checkAccount(String username, String password) {
         Connection connection = DBConnection.getConnection();
         String sql = "SELECT * FROM account WHERE username = '" + username + "' AND password ='" + password + "'";
@@ -32,7 +30,6 @@ public class AccountDao {
         return false;
 
     }
-    
     public static boolean checkIDFB(String ID) {
         Connection con = DBConnection.getConnection();
         String sql = "SELECT * FROM acc WHERE  facebookID = ? ";
@@ -74,7 +71,7 @@ public class AccountDao {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Accounts accountsBean = new Accounts();
-                accountsBean.setId(rs.getString("id"));
+                accountsBean.setId(rs.getInt("id"));
                 accountsBean.setUserName(rs.getString("username"));
                 accountsBean.setPassword(rs.getString("password"));
                 accountsBean.setNumberPhone(rs.getString("numberphone"));
@@ -154,8 +151,8 @@ public class AccountDao {
         return false;
     }
 
-    // Register
-    //Kiểm tra chuỗi hợp lệ:
+    // Dang ky
+    // Kiểm tra chuỗi hợp lệ:
     public static boolean kiemTraChuoi(String regex, String input) {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(input);
@@ -185,7 +182,7 @@ public class AccountDao {
 //        return str;
 //    }
 
-    //Kiem tra tai khoan nay da ton tai hay chua:
+    // 5.2.2. Kiểm tra tài khoản đã tồn tại hay chưa thông qua Username
     public boolean kiemTraTonTai(String userName) {
         String sql = "SELECT * FROM account WHERE username = '" + userName + "'";
         try {
@@ -197,25 +194,24 @@ public class AccountDao {
             }
             cons.close();
         } catch (SQLException ex) {
-            Logger.getLogger(AccountDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(dao.AccountDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
 
     // 5.2.3. Thêm tài khoản vào Database
-    public void themTaiKhoan(User taiKhoan) {
-        // insert vào bảng account các trường đã set, get
+    public void themTaiKhoan(Accounts taiKhoan) {
         String sql = "INSERT INTO account VALUE (?,?,?,?,?,?,?)";
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement pst = conn.prepareStatement(sql);
-            pst.setString(1, taiKhoan.getMaTK());
-            pst.setString(2, taiKhoan.getName());
+            pst.setInt(1, taiKhoan.getId());
+            pst.setString(2, taiKhoan.getUserName());
             pst.setString(3, taiKhoan.getEmail());
-            pst.setString(4, taiKhoan.getAdress());
-            pst.setString(5, taiKhoan.getPhone());
+            pst.setString(4, taiKhoan.getNumberPhone());
+            pst.setString(5, taiKhoan.getAddress());
             pst.setString(6, taiKhoan.getPassword());
-            pst.setInt(7, taiKhoan.getQuyen());
+            pst.setInt(7, taiKhoan.getActive());
             pst.executeUpdate();
             conn.close();
         } catch (SQLException e) {
@@ -223,20 +219,41 @@ public class AccountDao {
         }
     }
 
+    // Cap nhat thong tin tai khoan ca nhan
+    // Chinh sua ten, email, sdt, dia chi
     public boolean updateUser(Accounts accounts) {
         PreparedStatement stm = null;
         Connection con = null;
         boolean f = false;
         try {
             con = DBConnection.getConnection();
-            String sql = "UPDATE `cnpm_03`.`account` SET  `username` = ?, `email` = ?, `numberphone` = ?, `address`=? WHERE `id` = ?";
+            String sql = "UPDATE `account` SET  `username` = ?, `email` = ?, `numberphone` = ?, `address`=? WHERE `id` = ?";
             stm = con.prepareStatement(sql);
             stm.setString(1, accounts.getUserName());
             stm.setString(2, accounts.getEmail());
             stm.setString(3, accounts.getNumberPhone());
             stm.setString(4, accounts.getAddress());
-            stm.setString(5, accounts.getId());
+            stm.setInt(5, accounts.getId());
 
+            stm.executeUpdate();
+            f = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return f;
+    }
+
+    // Doi mat khau
+    public boolean updatePassword(Accounts accounts) {
+        PreparedStatement stm = null;
+        Connection con = null;
+        boolean f = false;
+        try {
+            con = DBConnection.getConnection();
+            String sql = "UPDATE `account` SET  `password`=? WHERE `id` = ?";
+            stm = con.prepareStatement(sql);
+            stm.setString(1, accounts.getPassword());
+            stm.setInt(2, accounts.getId());
             stm.executeUpdate();
             f = true;
         } catch (Exception e) {

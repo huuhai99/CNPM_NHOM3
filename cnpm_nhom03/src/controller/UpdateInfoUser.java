@@ -19,7 +19,6 @@ public class UpdateInfoUser extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         // fetch data need to update
-
         String name = request.getParameter("user_name");
         String email = request.getParameter("user_email");
         String phone = request.getParameter("user_phone");
@@ -27,42 +26,21 @@ public class UpdateInfoUser extends HttpServlet {
 
         // get user from session...
         HttpSession session = request.getSession();
-        Accounts user = (Accounts) session.getAttribute("account");
-        user.setUserName(name);
-        user.setEmail(email);
-        user.setNumberPhone(phone);
-        user.setAddress(address);
+        Accounts account = (Accounts) session.getAttribute("account");
+        account.setUserName(name);
+        account.setEmail(email);
+        account.setNumberPhone(phone);
+        account.setAddress(address);
 
         // update database
         AccountDao accountDao = new AccountDao();
-        boolean result = accountDao.updateUser(user);
+        boolean result = accountDao.updateUser(account);
 
         if (result) {
-//            response.sendRedirect("HomePage");
+            response.sendRedirect("HomePage");
         } else {
-            request.getRequestDispatcher("IfoUser.jsp").forward(request, response);
+            request.getRequestDispatcher("infoUser.jsp").forward(request, response);
         }
-
-//        String sql = "UPDATE `cnpm_03`.`account` SET  `username` = ?, `email` = ?, `numberphone` = ?, `address`=? WHERE `id` = ? LIMIT 1";
-//        HttpSession session = request.getSession();
-//        Accounts user = (Accounts) session.getAttribute("account");
-//        try {
-//            PreparedStatement up = (PreparedStatement) DBConnection.getPreparedStatement(sql);
-//            up.setString(1, name);
-//            up.setString(2, email);
-//            up.setString(3, phone);
-//            up.setString(4, address);
-//            up.setString(5, user.getId());
-//            int rinsert = up.executeUpdate();
-//            if (rinsert == 1) {
-//                response.sendRedirect("HomePage");
-//            } else {
-//                request.getRequestDispatcher("cnpm_nhom03/IfoUser.jsp").forward(request, response);
-//            }
-//
-//        } catch (SQLException | ClassNotFoundException ex) {
-//            ex.printStackTrace();
-//        }
 
     }
 

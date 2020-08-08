@@ -1,8 +1,7 @@
 package controller;
 
 import dao.AccountDao;
-import model.User;
-import model.User;
+import model.Accounts;
 import utils.UtilsPath;
 
 import javax.servlet.RequestDispatcher;
@@ -15,9 +14,10 @@ import java.io.IOException;
 import java.util.Date;
 
 @WebServlet("/DoRegister")
-public class doRegister extends HttpServlet {
-    User taiKhoan = null;
-    AccountDao taiKhoanDao = new AccountDao();
+public class DoRegister extends HttpServlet {
+    Accounts taiKhoan = null;
+    AccountDao accountDao = new AccountDao();
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         denTrangDangKy(request, response);
@@ -29,34 +29,36 @@ public class doRegister extends HttpServlet {
         kiemTraThongTin(taiKhoan, request, response);
     }
 
-    //     3: Phương thức trả về trang đăng ký:
-        private void denTrangDangKy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    //   3: Phương thức trả về trang đăng ký:
+    private void denTrangDangKy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        Gọi lại trang Register để hiện thị form Đăng kí
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/register.jsp");
         rd.forward(request, response);
     }
 
     // 5.1. Phương thức lấy thông tn Đăng ký
-    private User thongTinDangKy(HttpServletRequest request) {
-        User tk = new User();
-        tk.setName(request.getParameter("ten"));
+    private Accounts thongTinDangKy(HttpServletRequest request) {
+        Accounts tk = new Accounts();
+        tk.setUserName(request.getParameter("ten"));
         tk.setEmail(request.getParameter("email"));
         tk.setPassword(request.getParameter("password"));
-        tk.setPhone(request.getParameter("phone"));
-        tk.setAdress(request.getParameter("address"));
+        tk.setNumberPhone(request.getParameter("phone"));
+        tk.setAddress(request.getParameter("address"));
 
         return tk;
     }
 
     // 5.2. Phương thức kiểm tra thông tin Đăng ký đã nhập ở form Đăng ký
-    private void kiemTraThongTin(User taiKhoan, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = taiKhoan.getName();
+    private void kiemTraThongTin(Accounts taiKhoan, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = taiKhoan.getUserName();
         String email = taiKhoan.getEmail();
-        String phone = taiKhoan.getPhone();
-        String adress = taiKhoan.getAdress();
+        String phone = taiKhoan.getNumberPhone();
+        String adress = taiKhoan.getAddress();
         String password = taiKhoan.getPassword();
         String re_password = request.getParameter("pwd1");
         String regex_email = "^[A-Za-z0-9]+([_\\.\\-]?[A-Za-z0-9])*@[A-Za-z0-9]+([\\.\\-]?[A-Za-z0-9]+)*(\\.[A-Za-z]+)+$";
         String regex_password = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*]).{8,}$";
+        String regex_phone = "^[0-9]+$";
         String name_error = "";
         String email_error = "";
         String password_error = "";
@@ -65,9 +67,11 @@ public class doRegister extends HttpServlet {
         String adress_error = "";
 
         // 5.2.1.Hiển thị thông sai nếu nhập thông tin sai hoặc chưa nhập
+
+        //Kiểm tra tên đăng nhập:
         if (name.equals("")) {
             name_error = "✖ Vui lòng nhập tên!";
-        } else if (taiKhoanDao.kiemTraTonTai(name) == true) {
+        } else if (accountDao.kiemTraTonTai(name) == true) {
             name_error = "✖ Tên đã được đăng ký";
         }
         if (name_error.length() > 0) {
@@ -76,19 +80,20 @@ public class doRegister extends HttpServlet {
         //Kiểm tra email:
         if (email.equals("")) {
             email_error = "✖ Vui lòng nhập email";
-        } else if (taiKhoanDao.kiemTraChuoi(regex_email, email) == false) {
+        } else if (accountDao.kiemTraChuoi(regex_email, email) == false) {
             email_error = "✖ Sai định dạng Email";
         }
         if (email_error.length() > 0) {
             request.setAttribute("email_error", email_error);
         }
-//        //Kiểm tra số điện thoại:
-//        if (phone.equals("")) {
-//            phone_error = "✖ Vui lòng nhập Sđt!";
-//
-//        }
-//        if (password.length() > 0) {
-//            request.setAttribute("phone_error", phone_error);
+        //Kiểm tra số điện thoại:
+        if (phone.equals("")) {
+            phone_error = "✖ Vui lòng nhập số điện thoại";
+        } else if (accountDao.kiemTraChuoi(regex_phone, email) == false) {
+            phone_error = "✖ Chỉ được nhập số";
+        }
+//        if (email_error.length() > 0) {
+//            request.setAttribute("email_error", email_error);
 //        }
 //        //Kiểm tra địa chỉ:
 //        if (adress.equals("")) {
@@ -101,7 +106,7 @@ public class doRegister extends HttpServlet {
         //Kiểm tra mật khẩu:
         if (password.equals("")) {
             password_error = "✖ Vui lòng nhập mật khẩu";
-        } else if (taiKhoanDao.kiemTraChuoi(regex_password, password) == false) {
+        } else if (accountDao.kiemTraChuoi(regex_password, password) == false) {
             password_error = "✖ Mật khẩu không đủ mạnh";
         }
         if (password_error.length() > 0) {
@@ -127,14 +132,15 @@ public class doRegister extends HttpServlet {
         try {
             // Nếu Đăng ký thành công sẽ qua trang Đăng nhập
             if (name_error.length() == 0 && email_error.length() == 0 && password_error.length() == 0 && repass_error.length() == 0) {
-                Date id = new Date();
-                taiKhoan = new User("" + id.getTime(), name, email, phone, adress, password, 1);
-                taiKhoanDao.themTaiKhoan(taiKhoan);
+//                Date id = new Date();
+//                taiKhoan = new Accounts("" + id.getTime(), name, password, email, phone, adress, 1);
+                taiKhoan = new Accounts(name, password, email, phone, adress, 1);
+                accountDao.themTaiKhoan(taiKhoan);
                 response.sendRedirect(UtilsPath.getPath("login.jsp"));
+
                 // Còn nếu nhập sai thì vẫn ở trang Đăng ký
             } else {
-                url="/register.jsp";
-
+                url = "/register.jsp";
                 RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
                 rd.forward(request, response);
             }
@@ -145,13 +151,6 @@ public class doRegister extends HttpServlet {
         }
 
     }
-//k xài
-//    private void traVeThongBao(String noiDung, HttpServletRequest request, HttpServletResponse response) throws
-//            ServletException, IOException {
-//        request.setAttribute("message", noiDung);
-//        RequestDispatcher rd = getServletContext().getRequestDispatcher("/register.jsp");
-//        rd.forward(request, response);
-//    }
 
 
 }

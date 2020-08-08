@@ -1,6 +1,6 @@
+<%@taglib prefix="botDetect" uri="https://captcha.com/java/jsp" %>
 <%@ page import="utils.UtilsPath" %>
 <%@ page import="model.Accounts" %>
-<%@taglib prefix="botDetect" uri="https://captcha.com/java/jsp" %>
 
 
 <!DOCTYPE html>
@@ -35,33 +35,35 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/signin_signup.css">
     <link rel="stylesheet" href="css/userStyle.css">
+    <link rel="stylesheet" href="css/search.css">
 
     <style>
         .form-control {
             height: 45px !important;
         }
+
+        .modal-content .btn_fb_gg:hover {
+            filter: brightness(130%) !important;
+        }
+
+        .modal-content .btn-signup:hover {
+            filter: brightness(130%) !important;
+        }
     </style>
 
 </head>
-
 <body>
 <%
-
     Accounts account = (Accounts) session.getAttribute("account");
-    if (session.getAttribute("account")==null) {
-        response.sendRedirect("login.jsp");
-    }
-%>
 
-<%
     String err = "";
     if (request.getAttribute("err") != null) {
         err = (String) request.getAttribute("err");
     }
-    String username = "";
+    String email = "";
     String pass = "";
-    if (request.getAttribute("username") != null) {
-        username = (String) request.getAttribute("username");
+    if (request.getAttribute("email") != null) {
+        email = (String) request.getAttribute("email");
     }
     if (request.getAttribute("pass") != null) {
         pass = (String) request.getAttribute("pass");
@@ -79,27 +81,27 @@
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
-        <div class="collapse navbar-collapse" id="ftco-nav" class="menu">
+        <div class="collapse navbar-collapse menu" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="index.jsp" class="nav-link">Trang chủ</a></li>
+                <li class="search_and_icon">
+                    <input type="text" class="form-control search align-left-search" placeholder="Tìm kiếm......">
+                    <a class="icon-search align-left-search"></a>
+                </li>
+                <li class="nav-item active"><a href="index.jsp" class="nav-link">Trang chủ</a></li>
                 <li class="nav-item"><a href="menu.html" class="nav-link">Thực đơn</a></li>
-                <!--                <li class="nav-item"><a href="services.html" class="nav-link">Dịch vụ</a></li>-->
-                <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-                <!--                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>-->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <a class="dropdown-item" href="about.html">Về chúng tôi</a>
                         <a class="dropdown-item" href="shop.html">Cửa hàng</a>
-                        <a class="dropdown-item" href="services.html">Dịch vụ</a>
                         <a class="dropdown-item" href="product-details.html">Chi tiết sản phẩm</a>
                         <a class="dropdown-item" href="cart.html">Giỏ hàng</a>
                         <a class="dropdown-item" href="checkout.html">Thanh toán</a>
                     </div>
                 </li>
                 <li class="nav-item"><a href="contact.html" class="nav-link">Liên hệ</a></li>
-                <li class="nav-item active dropdown">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="shop.html" id="dropdown05" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false"><i class="icon-user"></i> Tài khoản</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown05">
@@ -113,18 +115,18 @@
                         } else {
 
                         %>
-                        <a class="dropdown-item" href="<%=UtilsPath.getPath("LoginController")%>" class="dropdown-item">Đăng
+                        <a class="dropdown-item" href="<%=UtilsPath.getPath("LoginController")%>">Đăng
                             xuất</a>
                         <%
                             }
                         %>
                         <%
-                            if(session.getAttribute("userFB") == null && session.getAttribute("userGG") == null){
+                            if (session.getAttribute("userFB") == null && session.getAttribute("userGG") == null) {
 
 
                         %>
 
-                        <a class="dropdown-item" href="IfoUser.jsp">Thông tin cá nhân</a>
+                        <a class="dropdown-item" href="infoUser.jsp">Thông tin cá nhân</a>
                         <%
                             }
                         %>
@@ -155,12 +157,13 @@
                 <form action="LoginController" method="post">
                     <!--container-->
                     <div class="container">
-                        <p style="color: white;"><%=err%>
-                        <p style="color: white;"><%=errorString%>
+                        <p style="color: red;"><%=err%>
+                        </p>
+                        <p style="color: red;"><%=errorString%>
                         </p>
                         <div class="form-group">
-                            <label for="email_1">Email:</label>
-                            <input type="text" class="form-control" name="username" id="email_1" value="<%=username%>">
+                            <label for="email_1">Tên đăng nhập:</label>
+                            <input type="text" class="form-control" name="email_1" id="email_1" value="<%=email%>">
                         </div>
                         <div class="form-group">
                             <label for="pwd">Mật khẩu:</label>
@@ -172,32 +175,31 @@
 
 
                         <button type="submit" style="margin-top: 20px" class="btn btn-success w-100"><i
-                                class="icon-sign-in"></i>&nbsp; Đăng
-                            nhập
+                                class="icon-sign-in icon_btn"></i>&nbsp; Đăng nhập
                         </button>
+
+                        <a class="btn btn-success w-100 btn_fb_gg"
+                           style="color: white; background: #4469b0; margin-top: 20px"
+                           href="https://www.facebook.com/dialog/oauth?client_id=2720474321608029&redirect_uri=http://localhost:8080/cnpm_nhom03/login_facebook">
+                            <i class="icon-facebook"></i>&nbsp; Đăng nhập bằng Facebook</a>
+                        </a>
+
+                        <a class="btn btn-success w-100 btn_fb_gg"
+                           style="color: white; background: #e2433a; margin-top: 20px"
+                           href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/cnpm_nhom03/login_google&response_type=code
+    &client_id=508591481116-tna9n07ahv5il3j14gnguvk01m3bd55g.apps.googleusercontent.com&approval_prompt=force">
+                            <i class="icon-google"></i>&nbsp; Đăng nhập bằng Google</a>
+                        </a>
 
                     </div>
                 </form>
-<%--                <form>--%>
-                <button  type="submit" class="btn btn-success w-100" style="margin-top: 20px"><a
-                        href="https://www.facebook.com/dialog/oauth?client_id=2720474321608029&redirect_uri=http://localhost:8080/cnpm_nhom03/login_facebook"
-                        style="color:white;">Đăng nhập bằng Facebook</a></button>
-<%--                </form>--%>
-<%--                <form>--%>
-                <button type="submit" class="btn btn-success w-100" style="margin-top: 20px"><a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/cnpm_nhom03/login_google&response_type=code
-    &client_id=508591481116-tna9n07ahv5il3j14gnguvk01m3bd55g.apps.googleusercontent.com&approval_prompt=force"
-                                                                                  style="color:white;">Đăng nhập bằng
-                    Google</a>
-                </button>
-<%--                </form>--%>
-
 
             </div>
 
             <!-- Sign in footer -->
             <div class="modal-footer">
                 <h6 class="w-100">Quên mật khẩu?</h6>
-                <a href="register.html" class="btn btn-danger w-100"><i class="icon-user-plus"></i>&nbsp; Đăng ký
+                <a href="register.jsp" class="btn btn-danger w-100 btn-signup"><i class="icon-user-plus"></i>&nbsp; Đăng ký
                     ngay</a>
             </div>
 
