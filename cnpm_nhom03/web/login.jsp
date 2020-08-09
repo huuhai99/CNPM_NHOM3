@@ -49,6 +49,10 @@
         .modal-content .btn-signup:hover {
             filter: brightness(130%) !important;
         }
+
+        .modal-content .btn-si-su:hover {
+            filter: brightness(130%);
+        }
     </style>
 
 </head>
@@ -157,9 +161,9 @@
                 <form action="LoginController" method="post">
                     <!--container-->
                     <div class="container">
-                        <p style="color: red;"><%=err%>
+                        <p style="color: red; margin-bottom: 0"><%=err%>
                         </p>
-                        <p style="color: red;"><%=errorString%>
+                        <p style="color: red; margin-bottom: 0"><%=errorString%>
                         </p>
                         <div class="form-group">
                             <label for="email_1">Tên đăng nhập:</label>
@@ -174,7 +178,7 @@
                              data-sitekey="6LdqcrkZAAAAAHqVmA7iVJBmubB_i3y0-HphLIdO"></div>
 
 
-                        <button type="submit" style="margin-top: 20px" class="btn btn-success w-100"><i
+                        <button type="submit" style="margin-top: 20px" class="btn btn-success w-100 btn-si-su"><i
                                 class="icon-sign-in icon_btn"></i>&nbsp; Đăng nhập
                         </button>
 
@@ -191,6 +195,13 @@
                             <i class="icon-google"></i>&nbsp; Đăng nhập bằng Google</a>
                         </a>
 
+                        <%--                        <button class="btn btn-success w-100 btn_fb_gg"--%>
+                        <%--                                style="margin-top: 20px; background: #e2433a">--%>
+                        <%--                            <i class="icon-google icon_btn"></i><a--%>
+                        <%--                                href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/cnpm_nhom03/login_google&response_type=code--%>
+                        <%--    &client_id=508591481116-tna9n07ahv5il3j14gnguvk01m3bd55g.apps.googleusercontent.com&approval_prompt=force"--%>
+                        <%--                                style="color:white">&nbsp; Đăng nhập bằng Google</a>--%>
+                        <%--                        </button>--%>
                     </div>
                 </form>
 

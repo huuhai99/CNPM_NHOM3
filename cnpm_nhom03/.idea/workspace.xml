@@ -7,65 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17bb557c-812c-4175-9eda-1e48697168db" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/infoUser.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/updatePassword.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cnpm_nhom03.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cnpm_nhom03.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/cnpm_nhom03_war_exploded/cnpm_nhom03_war exploded.war" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cnpm_nhom03_war_exploded/cnpm_nhom03_war exploded.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cnpm_nhom03/META-INF/cnpm_nhom03.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cnpm_nhom03/common/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cnpm_nhom03/common/Constants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cnpm_nhom03/common/RestFB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cnpm_nhom03/common/RestFB.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cnpm_nhom03/connection/DBConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cnpm_nhom03/connection/DBConnection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cnpm_nhom03/controller/HomPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cnpm_nhom03/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cnpm_nhom03/controller/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cnpm_nhom03/controller/UpdateInfoUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cnpm_nhom03/controller/UpdateInfoUser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cnpm_nhom03/controller/doRegister.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cnpm_nhom03/controller/doRegister.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cnpm_nhom03/controller/login_facebook.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cnpm_nhom03/controller/login_google.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cnpm_nhom03/dao/AccountDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cnpm_nhom03/dao/AccountDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cnpm_nhom03/model/Accounts.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cnpm_nhom03/model/Accounts.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cnpm_nhom03/model/GooglePojo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cnpm_nhom03/model/GooglePojo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cnpm_nhom03/model/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cnpm_nhom03/utils/GoogleUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cnpm_nhom03/utils/GoogleUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cnpm_nhom03/utils/UtilsPath.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cnpm_nhom03/utils/UtilsPath.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cnpm_nhom03/utils/VerifyUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cnpm_nhom03/utils/VerifyUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/RestFB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/RestFB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/connection/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/connection/DBConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/HomPage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/UpdateInfoUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/UpdateInfoUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/doRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/doRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/login_facebook.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/login_google.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/AccountDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/AccountDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Accounts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Accounts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/GoogleUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/GoogleUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/UtilsPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/UtilsPath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/VerifyUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/VerifyUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/IfoUser.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/IfoUser.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/UpdatePassword.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/about.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/blog-single.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/blog.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/checkout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/contact.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/css/signin_signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/signin_signup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/css/userStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/userStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/infoUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/infoUser.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/product-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/product-details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/register.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/services.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/shop.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/shop.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -259,7 +205,8 @@
       <workItem from="1596904086594" duration="199000" />
       <workItem from="1596904381553" duration="1235000" />
       <workItem from="1596905779011" duration="144000" />
-      <workItem from="1596916098635" duration="1994000" />
+      <workItem from="1596916098635" duration="2607000" />
+      <workItem from="1597004630946" duration="231000" />
     </task>
     <servers />
   </component>

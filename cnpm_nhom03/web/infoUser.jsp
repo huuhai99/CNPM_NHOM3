@@ -42,8 +42,23 @@
 </head>
 <%
     Accounts account = (Accounts) session.getAttribute("account");
+
+    String userName_error = "";
+    String email_error = "";
+    String phone_error ="";
+
+    if (request.getAttribute("userName_error") != null) {
+        userName_error = (String) request.getAttribute("userName_error");
+    }
+    if (request.getAttribute("email_error") != null) {
+        email_error = (String) request.getAttribute("email_error");
+    }
+    if(request.getAttribute("phone_error") != null) {
+        phone_error =(String)request.getAttribute("phone_error");
+    }
 %>
 <body>
+
 <!--Header-->
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
@@ -136,17 +151,20 @@
                     <div class="container">
                         <div class="form-group">
                             <label for="yourName">Tên đăng nhập:</label>
+                            <p style="color: red; margin-bottom: 0"><%= userName_error %></p>
                             <input type="text" class="form-control" id="yourName" name="user_name"
                                    value="<%= request.getAttribute("name") != null ? request.getAttribute("name") : account.getUserName() %>">
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email:</label>
+                            <p style="color: red; margin-bottom: 0"><%= email_error %></p>
                             <input type="email" class="form-control" id="email" name="user_email"
                                    value="<%= request.getAttribute("email") != null ? request.getAttribute("email") : account.getEmail() %>">
                         </div>
                         <div class="form-group">
                             <label for="phone">Số điện thoại:</label>
+                            <p style="color: red; margin-bottom: 0"><%= phone_error %></p>
                             <input type="tel" class="form-control" id="phone" name="user_phone"
                                    value="<%= request.getAttribute("phone") != null ? request.getAttribute("phone") : account.getNumberPhone() %>">
                         </div>

@@ -52,6 +52,9 @@
 }
 
 #myModal-signUp .modal-body {
-    height: 600px;
+    max-height: 920px;
     overflow: auto;
+}
+#myModal-signUp {
+    max-height: 1200px;
 }
