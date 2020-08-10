@@ -56,7 +56,7 @@ public class UpdateInfoUser extends HttpServlet {
         // Check username
         if (userName.equals("")) {
             userName_error = "✖ Tên đăng nhập không được bỏ trống!";
-        } else if (accountDao.kiemTraTonTai(userName) == true) {
+        } else if (accountDao.kiemTraTonTai(userName, email) == true) {
             userName_error = "✖ Tên đăng nhập đã tồn tại!";
         }
         if (userName_error.length() > 0) {

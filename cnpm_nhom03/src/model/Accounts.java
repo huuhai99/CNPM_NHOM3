@@ -22,7 +22,7 @@ public class Accounts {
     public Accounts() {
     }
     
-    public Accounts(String userName, String password, String email, String numberPhone, String address, int active) {
+    public Accounts(String userName, String email, String numberPhone, String address, String password, int active) {
         this.userName = userName;
         this.email = email;
         this.numberPhone = numberPhone;

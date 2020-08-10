@@ -183,8 +183,8 @@ public class AccountDao {
 //    }
 
     // 5.2.2. Kiểm tra tài khoản đã tồn tại hay chưa thông qua Username
-    public boolean kiemTraTonTai(String userName) {
-        String sql = "SELECT * FROM account WHERE username = '" + userName + "'";
+    public boolean kiemTraTonTai(String userName, String email) {
+        String sql = "SELECT * FROM account WHERE username = '" + userName + "' and username = '" + email + "'";
         try {
             Connection cons = DBConnection.getConnection();
             PreparedStatement ps = cons.prepareStatement(sql);

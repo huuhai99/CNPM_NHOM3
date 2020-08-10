@@ -91,7 +91,7 @@
 
                         %>
                         <a class="dropdown-item" href="login.jsp">Đăng nhập</a>
-                        <a class="dropdown-item" href="register.jsp">Đăng ký</a>
+                        <a class="dropdown-item" href="register.jsp"><%=UtilsPath.getPath("DoRegister")%></a>
                         <%
                         } else {
 

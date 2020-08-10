@@ -6,13 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17bb557c-812c-4175-9eda-1e48697168db" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/UpdateInfoUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/UpdateInfoUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/css/signin_signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/signin_signup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/infoUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/infoUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/login.jsp" afterDir="false" />
-    </list>
+    <list default="true" id="bcfdf5e6-5884-4325-bbaa-6a670e9544f3" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,17 +16,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
-        <option value="Jsp File" />
         <option value="Class" />
+        <option value="XHTML File" />
+        <option value="Jsp File" />
       </list>
     </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/web/login.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -41,28 +29,21 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectId" id="1f9xU9DPHSuckGFHAuFS9iGPu6v" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1fcjmjbRQdhcyZxt6IDDCRScaRZ" />
   <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="XHTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/cnpm/CNPM_NHOM3/cnpm_nhom03" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/web" />
-      <recent name="C:\Users\HuuHai\IdeaProjects\cnpm_nhom03\web" />
-      <recent name="C:\Users\HuuHai\IdeaProjects\cnpm_nhom03\web\css" />
-      <recent name="C:\Users\HuuHai\IdeaProjects\cnpm_nhom03\src" />
-      <recent name="C:\Users\HuuHai\IdeaProjects\cnpm_nhom03\src\controller" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -76,13 +57,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.TOMCAT">
-    <configuration name="DBConnection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="connection.DBConnection" />
+  <component name="RunManager" selected="Tomcat Server.Tomcat 8.5.451">
+    <configuration name="SendMail" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.SendMail" />
       <module name="cnpm_nhom03" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="connection.*" />
+          <option name="PATTERN" value="dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -90,8 +71,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TOMCAT" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.47" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="13.0.1">
-      <option name="UPDATING_POLICY" value="redeploy-artifacts" />
+    <configuration name="activation-1.1.1.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/web/WEB-INF/lib/activation-1.1.1.jar" />
+      <method v="2" />
+    </configuration>
+    <configuration name="javax.mail.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/web/WEB-INF/lib/javax.mail.jar" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Tomcat 8.5.451" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.451" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="cnpm_nhom03:war exploded">
           <settings>
@@ -100,7 +89,7 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="Unnamed_cnpm_nhom03_2" />
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_cnpm_nhom03" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -108,7 +97,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="54484" />
+        <option name="DEBUG_PORT" value="58474" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -162,68 +151,35 @@
         </option>
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Application.DBConnection" />
-      <item itemvalue="Tomcat Server.TOMCAT" />
-    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.SendMail" />
+        <item itemvalue="JAR Application.javax.mail.jar" />
+        <item itemvalue="JAR Application.activation-1.1.1.jar" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="17bb557c-812c-4175-9eda-1e48697168db" name="Default Changelist" comment="" />
-      <created>1595644122553</created>
+      <changelist id="bcfdf5e6-5884-4325-bbaa-6a670e9544f3" name="Default Changelist" comment="" />
+      <created>1596524435131</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1595644122553</updated>
-      <workItem from="1595644125508" duration="5293000" />
-      <workItem from="1595667096096" duration="4164000" />
-      <workItem from="1595682215791" duration="8335000" />
-      <workItem from="1595739858030" duration="13207000" />
-      <workItem from="1595769290204" duration="14476000" />
-      <workItem from="1595814936247" duration="11269000" />
-      <workItem from="1595831514937" duration="2142000" />
-      <workItem from="1596077048125" duration="9483000" />
-      <workItem from="1596091377645" duration="4691000" />
-      <workItem from="1596117070244" duration="621000" />
-      <workItem from="1596144116555" duration="918000" />
-      <workItem from="1596162749124" duration="15204000" />
-      <workItem from="1596200903323" duration="15114000" />
-      <workItem from="1596267271019" duration="263000" />
-      <workItem from="1596267754585" duration="9977000" />
-      <workItem from="1596287540361" duration="9212000" />
-      <workItem from="1596330155850" duration="9564000" />
-      <workItem from="1596350489505" duration="9741000" />
-      <workItem from="1596376249635" duration="3900000" />
-      <workItem from="1596431675601" duration="10718000" />
-      <workItem from="1596512942873" duration="5508000" />
-      <workItem from="1596548221302" duration="15206000" />
-      <workItem from="1596607798816" duration="20522000" />
-      <workItem from="1596634062563" duration="19273000" />
-      <workItem from="1596655036187" duration="1776000" />
-      <workItem from="1596904086594" duration="199000" />
-      <workItem from="1596904381553" duration="1235000" />
-      <workItem from="1596905779011" duration="144000" />
-      <workItem from="1596916098635" duration="2607000" />
-      <workItem from="1597004630946" duration="231000" />
+      <updated>1596524435131</updated>
+      <workItem from="1596524439011" duration="3442000" />
+      <workItem from="1596603630026" duration="22985000" />
+      <workItem from="1596862375664" duration="1869000" />
+      <workItem from="1596868137071" duration="5775000" />
+      <workItem from="1596877209492" duration="9352000" />
+      <workItem from="1596908141566" duration="1578000" />
+      <workItem from="1597039300015" duration="5030000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>

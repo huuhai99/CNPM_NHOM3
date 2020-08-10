@@ -1,24 +1,14 @@
 <component name="libraryTable">
   <library name="lib">
     <CLASSES>
-      <root url="file:///Library/Java/apache-tomcat-8.5.47/lib" />
-      <root url="jar://$USER_HOME$/Desktop/Công nghệ phần mềm/botdetect-servlet-4.0.beta3.7.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/Công nghệ phần mềm/botdetect-4.0.beta3.7.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/Công nghệ phần mềm/botdetect-jsf12-4.0.beta3.7.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/Công nghệ phần mềm/botdetect-jsf20-4.0.beta3.7.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/Công nghệ phần mềm/botdetect-jsp20-4.0.beta3.7.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/Công nghệ phần mềm/lib/restfb-2.3.0.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/Công nghệ phần mềm/lib/commons-logging-1.2.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/Công nghệ phần mềm/lib/fluent-hc-4.5.5.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/Công nghệ phần mềm/lib/gson-2.8.2.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/Công nghệ phần mềm/lib/hsqldb.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/Công nghệ phần mềm/lib/httpclient-4.5.5.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/Công nghệ phần mềm/lib/httpcore-4.4.9.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/Công nghệ phần mềm/lib/javax.json-1.1.4.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/Công nghệ phần mềm/lib/json-20140107.jar!/" />
+      <root url="file://F:/apache-tomcat-8.5.45/lib" />
+      <root url="file://$PROJECT_DIR$/../lib" />
+      <root url="jar://$USER_HOME$/Desktop/activation.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/javax.mail.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
-    <jarDirectory url="file:///Library/Java/apache-tomcat-8.5.47/lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../lib" recursive="false" />
+    <jarDirectory url="file://F:/apache-tomcat-8.5.45/lib" recursive="false" />
   </library>
 </component>

@@ -11,7 +11,7 @@ public class DBConnection {
     public static Statement connect() throws ClassNotFoundException, SQLException {
         if (con == null || con.isClosed()) {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cnpm_03?useUnicode=true&characterEncoding=utf-8", "root", "rootuser");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project?useUnicode=true&characterEncoding=utf-8", "root", "");
             return con.createStatement();
         } else {
             return con.createStatement();
@@ -22,7 +22,7 @@ public class DBConnection {
     public static PreparedStatement getPreparedStatement(String sql) throws ClassNotFoundException, SQLException {
         if (con == null || con.isClosed()) {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cnpm_03?useUnicode=true&characterEncoding=utf-8", "root", "rootuser");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project?useUnicode=true&characterEncoding=utf-8", "root", "");
             return con.prepareStatement(sql);
         } else {
             return con.prepareStatement(sql);
@@ -33,7 +33,7 @@ public class DBConnection {
     public static Connection getConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/cnpm_03?useUnicode=true&characterEncoding=utf-8", "root", "rootuser");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project?useUnicode=true&characterEncoding=utf-8", "root", "");
             return connection;
         } catch (ClassNotFoundException | SQLException e) {
             return connection;
