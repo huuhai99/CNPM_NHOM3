@@ -1,7 +1,8 @@
 <%@taglib prefix="botDetect" uri="https://captcha.com/java/jsp" %>
 <%@ page import="utils.UtilsPath" %>
 <%@ page import="model.Accounts" %>
-
+<%@ page import="com.restfb.types.User" %>
+<%@ page import="model.GooglePojo" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -59,6 +60,8 @@
 <body>
 <%
     Accounts account = (Accounts) session.getAttribute("account");
+    User userFB = (User) session.getAttribute("userFB");
+    GooglePojo googlePojo = (GooglePojo) session.getAttribute("userGG");
 
     String err = "";
     if (request.getAttribute("err") != null) {
@@ -92,12 +95,13 @@
                     <a class="icon-search align-left-search"></a>
                 </li>
                 <li class="nav-item active"><a href="index.jsp" class="nav-link">Trang chủ</a></li>
-                <li class="nav-item"><a href="menu.html" class="nav-link">Thực đơn</a></li>
+                <%--                <li class="nav-item"><a href="menu.html" class="nav-link">Thực đơn</a></li>--%>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <a class="dropdown-item" href="about.html">Về chúng tôi</a>
+                        <a class="dropdown-item" href="menu.html">Thực đơn</a>
                         <a class="dropdown-item" href="shop.html">Cửa hàng</a>
                         <a class="dropdown-item" href="product-details.html">Chi tiết sản phẩm</a>
                         <a class="dropdown-item" href="cart.html">Giỏ hàng</a>
@@ -105,10 +109,42 @@
                     </div>
                 </li>
                 <li class="nav-item"><a href="contact.html" class="nav-link">Liên hệ</a></li>
+
                 <li class="nav-item dropdown">
+                    <%
+                        if (session.getAttribute("userGG") == null && session.getAttribute("userFB") == null && session.getAttribute("account") == null) {
+                    %>
                     <a class="nav-link dropdown-toggle" href="shop.html" id="dropdown05" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false"><i class="icon-user"></i> Tài khoản</a>
+                       aria-haspopup="true" aria-expanded="false"><i class="icon-user"></i>&nbsp;Tài
+                        Khoản</a>
+                    <%
+                    } else if (session.getAttribute("userFB") != null) {
+                    %>
+                    <a class="nav-link dropdown-toggle" href="shop.html" id="dropdown05" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" style="text-transform: none"><i class="icon-user"></i>&nbsp;<%=userFB.getName()%>
+                    </a>
+                    <%
+                    } else if (session.getAttribute("userGG") != null) {
+                    %>
+
+                    <a class="nav-link dropdown-toggle" href="shop.html" id="dropdown05" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false"
+                       style="text-transform: none"><i class="icon-user"></i>&nbsp;<%=googlePojo.getEmail()%>
+                    </a>
+                    <%
+                    } else if (session.getAttribute("account") != null) {
+
+
+                    %>
+                    <a class="nav-link dropdown-toggle" href="shop.html" id="dropdown05" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" style="text-transform: none"><i
+                            class="icon-user"></i>&nbsp;<%=account.getUserName()%>
+                    </a>
+                    <%
+                        }
+                    %>
                     <div class="dropdown-menu" aria-labelledby="dropdown05">
+
                         <%
                             if (session.getAttribute("account") == null && session.getAttribute("userFB") == null && session.getAttribute("userGG") == null) {
 
@@ -133,7 +169,9 @@
                         <a class="dropdown-item" href="infoUser.jsp">Thông tin cá nhân</a>
                         <%
                             }
+
                         %>
+
                     </div>
                 </li>
 
@@ -188,12 +226,23 @@
                             <i class="icon-facebook"></i>&nbsp; Đăng nhập bằng Facebook</a>
                         </a>
 
+<%--                        <a class="btn btn-success w-100 btn_fb_gg"--%>
+<%--                           style="color: white; background: #4469b0; margin-top: 20px"--%>
+<%--                           href="https://www.facebook.com/dialog/oauth?client_id=2720474321608029&redirect_uri=https://coffee.j.layershift.co.uk/login_facebook">--%>
+<%--                            <i class="icon-facebook"></i>&nbsp; Đăng nhập bằng Facebook</a>--%>
+<%--                        </a>--%>
+
                         <a class="btn btn-success w-100 btn_fb_gg"
                            style="color: white; background: #e2433a; margin-top: 20px"
-                           href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/cnpm_nhom03/login_google&response_type=code
-    &client_id=508591481116-tna9n07ahv5il3j14gnguvk01m3bd55g.apps.googleusercontent.com&approval_prompt=force">
+                           href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/cnpm_nhom03/login_google&response_type=code&client_id=508591481116-tna9n07ahv5il3j14gnguvk01m3bd55g.apps.googleusercontent.com&approval_prompt=force">
                             <i class="icon-google"></i>&nbsp; Đăng nhập bằng Google</a>
                         </a>
+
+<%--                        <a class="btn btn-success w-100 btn_fb_gg"--%>
+<%--                           style="color: white; background: #e2433a; margin-top: 20px"--%>
+<%--                           href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=https://coffee.j.layershift.co.uk/login_google&response_type=code&client_id=508591481116-tna9n07ahv5il3j14gnguvk01m3bd55g.apps.googleusercontent.com&approval_prompt=force">--%>
+<%--                            <i class="icon-google"></i>&nbsp; Đăng nhập bằng Google</a>--%>
+<%--                        </a>--%>
 
                         <%--                        <button class="btn btn-success w-100 btn_fb_gg"--%>
                         <%--                                style="margin-top: 20px; background: #e2433a">--%>

@@ -1,5 +1,7 @@
 <%@ page import="model.Accounts" %>
 <%@ page import="utils.UtilsPath" %>
+<%@ page import="com.restfb.types.User" %>
+<%@ page import="model.GooglePojo" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
@@ -39,9 +41,22 @@
     <link rel="stylesheet" href="css/userStyle.css">
     <link rel="stylesheet" href="css/search.css">
 
+    <style>
+        .modal-content .btn-success:hover {
+            filter: brightness(130%);
+        }
+    </style>
+
 </head>
 <%
     Accounts account = (Accounts) session.getAttribute("account");
+    User userFB = (User) session.getAttribute("userFB");
+    GooglePojo googlePojo = (GooglePojo) session.getAttribute("userGG");
+
+    String success = "";
+    if (request.getAttribute("success") != null) {
+        success = (String) request.getAttribute("success");
+    }
 
     String userName_error = "";
     String email_error = "";
@@ -74,12 +89,13 @@
                     <a class="icon-search align-left-search"></a>
                 </li>
                 <li class="nav-item active"><a href="index.jsp" class="nav-link">Trang chủ</a></li>
-                <li class="nav-item"><a href="menu.html" class="nav-link">Thực đơn</a></li>
+                <%--                <li class="nav-item"><a href="menu.html" class="nav-link">Thực đơn</a></li>--%>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <a class="dropdown-item" href="about.html">Về chúng tôi</a>
+                        <a class="dropdown-item" href="menu.html">Thực đơn</a>
                         <a class="dropdown-item" href="shop.html">Cửa hàng</a>
                         <a class="dropdown-item" href="product-details.html">Chi tiết sản phẩm</a>
                         <a class="dropdown-item" href="cart.html">Giỏ hàng</a>
@@ -87,10 +103,42 @@
                     </div>
                 </li>
                 <li class="nav-item"><a href="contact.html" class="nav-link">Liên hệ</a></li>
+
                 <li class="nav-item dropdown">
+                    <%
+                        if (session.getAttribute("userGG") == null && session.getAttribute("userFB") == null && session.getAttribute("account") == null) {
+                    %>
                     <a class="nav-link dropdown-toggle" href="shop.html" id="dropdown05" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false"><i class="icon-user"></i> Tài khoản</a>
+                       aria-haspopup="true" aria-expanded="false"><i class="icon-user"></i>&nbsp;Tài
+                        Khoản</a>
+                    <%
+                    } else if (session.getAttribute("userFB") != null) {
+                    %>
+                    <a class="nav-link dropdown-toggle" href="shop.html" id="dropdown05" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" style="text-transform: none"><i class="icon-user"></i>&nbsp;<%=userFB.getName()%>
+                    </a>
+                    <%
+                    } else if (session.getAttribute("userGG") != null) {
+                    %>
+
+                    <a class="nav-link dropdown-toggle" href="shop.html" id="dropdown05" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false"
+                       style="text-transform: none"><i class="icon-user"></i>&nbsp;<%=googlePojo.getEmail()%>
+                    </a>
+                    <%
+                    } else if (session.getAttribute("account") != null) {
+
+
+                    %>
+                    <a class="nav-link dropdown-toggle" href="shop.html" id="dropdown05" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" style="text-transform: none"><i
+                            class="icon-user"></i>&nbsp;<%=account.getUserName()%>
+                    </a>
+                    <%
+                        }
+                    %>
                     <div class="dropdown-menu" aria-labelledby="dropdown05">
+
                         <%
                             if (session.getAttribute("account") == null && session.getAttribute("userFB") == null && session.getAttribute("userGG") == null) {
 
@@ -115,7 +163,9 @@
                         <a class="dropdown-item" href="infoUser.jsp">Thông tin cá nhân</a>
                         <%
                             }
+
                         %>
+
                     </div>
                 </li>
 
@@ -149,6 +199,7 @@
                 <form action="<%=UtilsPath.getPath("UpdateInfoUser")%>" method="post">
                     <!--container-->
                     <div class="container">
+                        <p style="color: #00bf00; margin-bottom: 0"><%= success %>
                         <div class="form-group">
                             <label for="yourName">Tên đăng nhập:</label>
                             <p style="color: red; margin-bottom: 0"><%= userName_error %></p>
@@ -176,7 +227,7 @@
                         <div class="form-group">
                             <div class="icon-local_shipping iconn"><a href="#" class="myOrder"> Đơn hàng của
                                 tôi </a></div>
-                            <div class="icon-vpn_key iconn"><a href="updatePassword.jsp" class="changePW"> Thay
+                            <div class="icon-vpn_key iconn"><a href="changePassword.jsp" class="changePW"> Thay
                                 đổi mật khẩu </a></div>
                         </div>
                         <input type="submit" class="btn btn-success w-100" value="Thay đổi" style="margin-top: 20px">

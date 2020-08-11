@@ -1,12 +1,14 @@
 <%@ page import="utils.UtilsPath" %>
+<%@ page import="model.Accounts" %>
+<%@ page import="com.restfb.types.User" %>
+<%@ page import="model.GooglePojo" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="utils.UtilsPath" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Coffee - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Đăng ký - Coffee Blend</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -36,9 +38,22 @@
     <link rel="stylesheet" href="css/userStyle.css">
     <link rel="stylesheet" href="css/search.css">
 
+    <style>
+        .modal-content .btn-si-su:hover {
+            filter: brightness(130%);
+        }
+    </style>
+
 </head>
 <body>
-<%
+<%--  Khai báo để gọi lại tên lỗi
+      Lỗi được xử lý ở DoRegister
+--%>
+    <%
+    Accounts account = (Accounts) session.getAttribute("account");
+    User userFB = (User) session.getAttribute("userFB");
+    GooglePojo googlePojo = (GooglePojo) session.getAttribute("userGG");
+
     String name_error = "";
     String email_error = "";
     String password_error = "";
@@ -88,6 +103,7 @@
 
 %>
 <body>
+<%--Header--%>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
         <a class="navbar-brand" href="index.jsp">Coffee<small>Blend</small></a>
@@ -95,37 +111,90 @@
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
-        <div class="collapse navbar-collapse" id="ftco-nav" class="menu">
+        <div class="collapse navbar-collapse menu" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="search_and_icon">
                     <input type="text" class="form-control search align-left-search" placeholder="Tìm kiếm......">
                     <a class="icon-search align-left-search"></a>
                 </li>
-                <li class="nav-item"><a href="index.jsp" class="nav-link">Trang chủ</a></li>
-                <li class="nav-item"><a href="menu.html" class="nav-link">Thực đơn</a></li>
-                <!--                <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>-->
+                <li class="nav-item active"><a href="index.jsp" class="nav-link">Trang chủ</a></li>
+                <%--                <li class="nav-item"><a href="menu.html" class="nav-link">Thực đơn</a></li>--%>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <a class="dropdown-item" href="about.html">Về chúng tôi</a>
+                        <a class="dropdown-item" href="menu.html">Thực đơn</a>
                         <a class="dropdown-item" href="shop.html">Cửa hàng</a>
-                        <!--                        <a class="dropdown-item" href="services.html">Dịch vụ</a>-->
                         <a class="dropdown-item" href="product-details.html">Chi tiết sản phẩm</a>
                         <a class="dropdown-item" href="cart.html">Giỏ hàng</a>
                         <a class="dropdown-item" href="checkout.html">Thanh toán</a>
                     </div>
                 </li>
                 <li class="nav-item"><a href="contact.html" class="nav-link">Liên hệ</a></li>
-                <li class="nav-item active dropdown">
+
+                <li class="nav-item dropdown">
+                    <%
+                        if (session.getAttribute("userGG") == null && session.getAttribute("userFB") == null && session.getAttribute("account") == null) {
+                    %>
                     <a class="nav-link dropdown-toggle" href="shop.html" id="dropdown05" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false"><i class="icon-user"></i> Tài khoản</a>
+                       aria-haspopup="true" aria-expanded="false"><i class="icon-user"></i>&nbsp;Tài
+                        Khoản</a>
+                    <%
+                    } else if (session.getAttribute("userFB") != null) {
+                    %>
+                    <a class="nav-link dropdown-toggle" href="shop.html" id="dropdown05" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" style="text-transform: none"><i class="icon-user"></i>&nbsp;<%=userFB.getName()%>
+                    </a>
+                    <%
+                    } else if (session.getAttribute("userGG") != null) {
+                    %>
+
+                    <a class="nav-link dropdown-toggle" href="shop.html" id="dropdown05" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false"
+                       style="text-transform: none"><i class="icon-user"></i>&nbsp;<%=googlePojo.getEmail()%>
+                    </a>
+                    <%
+                    } else if (session.getAttribute("account") != null) {
+
+
+                    %>
+                    <a class="nav-link dropdown-toggle" href="shop.html" id="dropdown05" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" style="text-transform: none"><i
+                            class="icon-user"></i>&nbsp;<%=account.getUserName()%>
+                    </a>
+                    <%
+                        }
+                    %>
                     <div class="dropdown-menu" aria-labelledby="dropdown05">
-                        <a class="dropdown-item" href="<%=UtilsPath.getPath("LoginController")%>">Đăng nhập</a>
-<%--                        1: Chọn "Đăng ký"--%>
-<%--                        2: Gọi đến DoRegister--%>
-                        <a class="dropdown-item" href="<%=UtilsPath.getPath("DoRegister")%>">Đăng kí</a>
-                        <a class="dropdown-item" href="IfoUser.html">Thông tin cá nhân</a>
+
+                        <%
+                            if (session.getAttribute("account") == null && session.getAttribute("userFB") == null && session.getAttribute("userGG") == null) {
+
+                        %>
+                        <a class="dropdown-item" href="login.jsp">Đăng nhập</a>
+                        <a class="dropdown-item" href="register.jsp">Đăng ký</a>
+                        <%
+                        } else {
+
+                        %>
+                        <a class="dropdown-item" href="<%=UtilsPath.getPath("LoginController")%>">Đăng
+                            xuất</a>
+                        <%
+                            }
+                        %>
+                        <%
+                            if (session.getAttribute("userFB") == null && session.getAttribute("userGG") == null) {
+
+
+                        %>
+
+                        <a class="dropdown-item" href="infoUser.jsp">Thông tin cá nhân</a>
+                        <%
+                            }
+
+                        %>
+
                     </div>
                 </li>
 
@@ -137,78 +206,75 @@
     </div>
 </nav>
 
-
-
+<%--Content--%>
 <!-- The Modal Sign up-->
-<div  id="myModal-signUp" style="margin-top: 120px" >
+<div id="myModal-signUp" style="margin-top: 120px">
     <div class="modal-dialog">
-        <div class="modal-content" style="height: 920px">
+        <div class="modal-content" style="min-height: 890px">
 
             <!-- Sign up Header -->
             <div class="modal-header">
                 <h3 class="modal-title">ĐĂNG KÝ</h3>
-                <button type="button" class="close text-danger" data-dismiss="modal"><i class="icon-close"></i>
-                </button>
             </div>
 
             <!-- Sign up body -->
             <div class="modal-body">
                 <!--form-->
-<%--                3.1 Hiển thị form Đăng ký--%>
-<%--                Xử lí những trường thông tin đăng kí nhập vào theo điều kiện ở doRegister--%>
+                <%-- 3.1 Hiển thị form Đăng ký --%>
+                <%-- Xử lí những trường thông tin đăng kí nhập vào theo điều kiện ở DoRegister --%>
                 <form action="<%=UtilsPath.getPath("DoRegister")%>" method="POST">
                     <!--container-->
-<%--                    4. Nhập vào những trường thông tin cần Đăng ký--%>
+                    <%-- 4. Nhập vào những trường thông tin cần Đăng ký--%>
                     <div class="container">
                         <div class="form-group">
-                            <label for="yourName">Họ tên:
-
-                            </label>
-                            <p style="color: red"><%=name_error%></p>
-                            <input type="text" class="form-control" id="yourName" value="<%=name%>" name="ten"
-                                   required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email:
-
-                            </label>
-                            <p style="color: red"><%=email_error%>
+                            <label for="yourName">Tên đăng nhập:</label>
+                            <%-- Khai báo lỗi username --%>
+                            <p style="color: red; margin-bottom: 0"><%=name_error%>
                             </p>
-                            <input type="email" class="form-control" id="email" placeholder="Email" value="<%=email%>"
-                                   name="email" required>
+                            <input type="text" class="form-control" id="yourName" value="<%=name%>" name="ten">
                         </div>
                         <div class="form-group">
-                            <label for="phone">Số điện thoại:
-                                <p style="color: red"><%=phone_error%></p>
-                            </label>
-                            <input type="tel" name="phone" class="form-control" id="phone" maxlength="11" >
+                            <label for="email">Email:</label>
+                            <%-- Khai báo lỗi Email --%>
+                            <p style="color: red; margin-bottom: 0"><%=email_error%>
+                            </p>
+                            <input type="email" class="form-control" id="email" value="<%=email%>" name="email">
                         </div>
                         <div class="form-group">
-                            <label for="address">Địa chỉ:
-                                <p style="color: red"><%=address_error%></p>
-                            </label>
-                            <input type="text" class="form-control" id="address" name="address">
+                            <label for="phone">Số điện thoại:</label>
+                            <%-- Khai báo lỗi số điện thoại --%>
+                            <p style="color: red; margin-bottom: 0"><%=phone_error%>
+                            </p>
+                            <input type="tel" class="form-control" id="phone" value="<%=phone%>" name="phone"
+                                   maxlength="11">
                         </div>
                         <div class="form-group">
-                            <label >Mật khẩu:
-                                <p style="color: red"><%=password_error%>
-                                </p>
-
-                            </label>
-                                <input type="password" class="form-control" id="password"
-                                       placeholder="Nhập mậu khẩu" name="password" required>
-
+                            <label for="address">Địa chỉ:</label>
+                            <%-- Khai báo lỗi địa chỉ --%>
+                            <p style="color: red; margin-bottom: 0"></p>
+                            <input type="text" class="form-control" id="address" value="<%=address%>" name="address">
                         </div>
                         <div class="form-group">
-                            <label >Nhập lại mật khẩu:
-                                <p style="color: red"><%=repass_error%>
-                                </p>
-                            </label>
-                                <input type="password" class="form-control" id="password_confirm"
-                                       placeholder="Nhập lại mật khẩu" name="pwd1" required>
+                            <label>Mật khẩu:</label>
+                            <%-- Khai báo lỗi mật khẩu --%>
+                            <p style="color: red; margin-bottom: 0"><%=password_error%>
+                            </p>
+                            <input type="password" class="form-control" id="password"
+                                   placeholder="" name="password">
 
                         </div>
-                        <button type="submit" class="btn btn-success w-100"><i class="icon-user-plus"></i> Đăng ký
+                        <div class="form-group">
+                            <label>Nhập lại mật khẩu:</label>
+                            <%-- Khai báo lỗi khi nhập lại mật khẩu --%>
+                            <p style="color: red; margin-bottom: 0"><%=repass_error%>
+                            </p>
+                            <input type="password" class="form-control" id="password_confirm"
+                                   placeholder="" name="pwd1">
+
+                        </div>
+                        <%-- Bấm nút "Đăng ký" để đăng ký --%>
+                        <button type="submit" class="btn btn-success w-100 btn-si-su"><i class="icon-user-plus"></i>
+                            Đăng ký
                         </button>
                     </div>
                 </form>
@@ -217,9 +283,8 @@
     </div>
 </div>
 
-<!-- END nav -->
 
-
+<%--Footer--%>
 <footer class="ftco-footer ftco-section img">
     <div class="overlay"></div>
     <div class="container">
@@ -240,10 +305,13 @@
                 <div class="ftco-footer-widget mb-4 ml-md-4">
                     <h2 class="ftco-heading-2">Thành viên</h2>
                     <ul class="list-unstyled">
-                        <li><a href="https://www.facebook.com/jenny.vu.9803" class="py-2 d-block"><i class="icon-user"></i>&nbsp;&nbsp;Vũ Huỳnh Như Anh</a>
+                        <li><a href="https://www.facebook.com/jenny.vu.9803" class="py-2 d-block"><i
+                                class="icon-user"></i>&nbsp;&nbsp;Vũ Huỳnh Như Anh</a>
                         </li>
-                        <li><a href="https://www.facebook.com/nguyenhuuhai1999" class="py-2 d-block"><i class="icon-user"></i>&nbsp;&nbsp;Nguyễn Hữu Hải</a>
-                        <li><a href="https://www.facebook.com/vqhuy.8799" class="py-2 d-block"><i class="icon-user"></i>&nbsp;&nbsp;Vũ Quốc Huy</a></li>
+                        <li><a href="https://www.facebook.com/nguyenhuuhai1999" class="py-2 d-block"><i
+                                class="icon-user"></i>&nbsp;&nbsp;Nguyễn Hữu Hải</a>
+                        <li><a href="https://www.facebook.com/vqhuy.8799" class="py-2 d-block"><i class="icon-user"></i>&nbsp;&nbsp;Vũ
+                            Quốc Huy</a></li>
                         </li>
                         <!--                        <li><a href="#" class="py-2 d-block">Mixed</a></li>-->
                     </ul>
@@ -279,7 +347,6 @@
     </div>
 </footer>
 
-
 <!-- loader -->
 <div id="ftco-loader" class="show fullscreen">
     <svg class="circular" width="48px" height="48px">
@@ -311,4 +378,3 @@
 
 </body>
 </html>
-

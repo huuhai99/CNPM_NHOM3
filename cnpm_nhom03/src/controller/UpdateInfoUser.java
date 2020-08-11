@@ -3,7 +3,6 @@ package controller;
 import dao.AccountDao;
 import model.Accounts;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,19 +20,21 @@ public class UpdateInfoUser extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
 
-        // Fetch data need to update
-        String name = request.getParameter("user_name");
+        // Lấy thông tin người dùng nhập vào
+        String uname = request.getParameter("user_name");
         String email = request.getParameter("user_email");
         String phone = request.getParameter("user_phone");
         String address = request.getParameter("user_address");
 
-        // Get user from session and check info input
+        // Nhận thông tin vào phiên người dùng
         HttpSession session = request.getSession();
         Accounts account = (Accounts) session.getAttribute("account");
-        account.setUserName(name);
+        account.setUserName(uname);
         account.setEmail(email);
         account.setNumberPhone(phone);
         account.setAddress(address);
+
+        // Kiểm tra thông tin nhập vào
         checkInfoInput(account, request, response);
 
 
@@ -53,17 +54,19 @@ public class UpdateInfoUser extends HttpServlet {
         String email_error = "";
         String phone_error = "";
 
-        // Check username
+        String success = "✔ Cập nhật thông tin thành công!";
+
+        // Kiểm tra tên đăng nhập nhập vào
         if (userName.equals("")) {
             userName_error = "✖ Tên đăng nhập không được bỏ trống!";
-        } else if (accountDao.kiemTraTonTai(userName, email) == true) {
+        } else if (accountDao.kiemTraTonTai_UN(userName) == true) {
             userName_error = "✖ Tên đăng nhập đã tồn tại!";
         }
         if (userName_error.length() > 0) {
             request.setAttribute("userName_error", userName_error);
         }
 
-        // Check email
+        // Kiểm tra email nhập vào
         if (email.equals("")) {
             email_error = "✖ Địa chỉ Email không được bỏ trống!";
         } else if (accountDao.kiemTraChuoi(regex_email, email) == false) {
@@ -73,30 +76,26 @@ public class UpdateInfoUser extends HttpServlet {
             request.setAttribute("email_error", email_error);
         }
 
-        // Check phone number
-//        if (phone.equals("")) {
-//            phone_error = "✖ Vui lòng nhập số điện thoại!";
-//        } else
-        if (!phone.equals("")) {
-            if (!accountDao.kiemTraChuoi(regex_phone, phone)) {
-                phone_error = "✖ Chỉ được nhập số!";
-            } else if (phone.length() > 15 || phone.length() < 8) {
-                phone_error = "✖ Độ dài số điện thoại không hợp lệ!";
-            }
-        }
-        if (phone_error.length() > 0) {
-            request.setAttribute("phone_error", phone_error);
-        }
+        // Kiểm tra số điện thoại nhập vào
+//        if (!phone.equals("")) {
+//            if (!accountDao.kiemTraChuoi(regex_phone, phone)) {
+//                phone_error = "✖ Chỉ được nhập số!";
+//            } else if (phone.length() > 15 || phone.length() < 8) {
+//                phone_error = "✖ Độ dài số điện thoại không hợp lệ!";
+//            }
+//        }
+//        if (phone_error.length() > 0) {
+//            request.setAttribute("phone_error", phone_error);
+//        }
 
-        // Update database
+        // Cập nhật database
         try {
             if (userName_error.length() == 0 && email_error.length() == 0) {
                 accountDao.updateUser(account);
-                response.sendRedirect("HomePage");
+                request.setAttribute("success", success);
+                request.getRequestDispatcher("/infoUser.jsp").forward(request, response);
             } else {
-                String url = "/infoUser.jsp";
-                RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
-                rd.forward(request, response);
+                request.getRequestDispatcher("/infoUser.jsp").forward(request, response);
             }
         } catch (Exception e) {
             e.printStackTrace();

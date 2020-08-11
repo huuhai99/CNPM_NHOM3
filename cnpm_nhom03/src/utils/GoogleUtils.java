@@ -13,11 +13,11 @@ import java.io.IOException;
 public class GoogleUtils {
     public static String getToken(final String code) throws ClientProtocolException, IOException {
         String response = Request.Post(Constants.GOOGLE_LINK_GET_TOKEN)
-        .bodyForm(Form.form().add("client_id", Constants.GOOGLE_CLIENT_ID)
-                  .add("client_secret", Constants.GOOGLE_CLIENT_SECRET)
-                  .add("redirect_uri",Constants.GOOGLE_REDIRECT_URL).add("code", code)
-                  .add("grant_type", Constants.GOOGLE_GRANT_TYPE).build())
-        .execute().returnContent().asString();
+                .bodyForm(Form.form().add("client_id", Constants.GOOGLE_CLIENT_ID)
+                        .add("client_secret", Constants.GOOGLE_CLIENT_SECRET)
+                        .add("redirect_uri",Constants.GOOGLE_REDIRECT_URL).add("code", code)
+                        .add("grant_type", Constants.GOOGLE_GRANT_TYPE).build())
+                .execute().returnContent().asString();
         JsonObject jobj = new Gson().fromJson(response, JsonObject.class);
         String accessToken = jobj.get("access_token").toString().replaceAll("\"", "");
         return accessToken;
@@ -29,5 +29,5 @@ public class GoogleUtils {
         System.out.println(googlePojo);
         return googlePojo;
     }
-    
+
 }

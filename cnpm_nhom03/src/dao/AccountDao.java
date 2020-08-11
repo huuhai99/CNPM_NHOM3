@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 
 public class AccountDao {
 
-    // Dang nhap
+    // Đăng nhâp
     public boolean checkAccount(String username, String password) {
         Connection connection = DBConnection.getConnection();
         String sql = "SELECT * FROM account WHERE username = '" + username + "' AND password ='" + password + "'";
@@ -118,7 +118,7 @@ public class AccountDao {
         }
         return false;
     }
-    public static boolean InsertGGToDB( String email ,String googleID) {
+    public static boolean InsertGGToDB(String email ,String googleID) {
         PreparedStatement stm = null;
         Connection con = null;
         try {
@@ -151,9 +151,9 @@ public class AccountDao {
         return false;
     }
 
-    // Dang ky
+    // Đăng ký
     // Kiểm tra chuỗi hợp lệ:
-    public static boolean kiemTraChuoi(String regex, String input) {
+    public boolean kiemTraChuoi(String regex, String input) {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(input);
         return matcher.matches();
@@ -183,8 +183,9 @@ public class AccountDao {
 //    }
 
     // 5.2.2. Kiểm tra tài khoản đã tồn tại hay chưa thông qua Username
-    public boolean kiemTraTonTai(String userName, String email) {
-        String sql = "SELECT * FROM account WHERE username = '" + userName + "' and username = '" + email + "'";
+    public boolean kiemTraTonTai_UN(String userName) {
+        String sql = "SELECT * FROM account WHERE username = '" + userName + "'";
+//        String sql = "SELECT * FROM account WHERE username = '" + userName + "' or email = '" + email + "'";
         try {
             Connection cons = DBConnection.getConnection();
             PreparedStatement ps = cons.prepareStatement(sql);
@@ -194,7 +195,23 @@ public class AccountDao {
             }
             cons.close();
         } catch (SQLException ex) {
-            Logger.getLogger(dao.AccountDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    public boolean kiemTraTonTai_EM(String email) {
+        String sql = "SELECT * FROM account WHERE email = '" + email + "'";
+        try {
+            Connection cons = DBConnection.getConnection();
+            PreparedStatement ps = cons.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+            cons.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -219,15 +236,14 @@ public class AccountDao {
         }
     }
 
-    // Cap nhat thong tin tai khoan ca nhan
-    // Chinh sua ten, email, sdt, dia chi
-    public boolean updateUser(Accounts accounts) {
-        PreparedStatement stm = null;
-        Connection con = null;
-        boolean f = false;
+    // Cập nhật, chỉnh sửa thông tin cá nhân
+    // Chỉnh sửa tên đăng nhập, email, số điện thoại, địa chỉ
+    public void updateUser(Accounts accounts) {
+        PreparedStatement stm;
+        Connection con;
         try {
             con = DBConnection.getConnection();
-            String sql = "UPDATE `account` SET  `username` = ?, `email` = ?, `numberphone` = ?, `address`=? WHERE `id` = ?";
+            String sql = "UPDATE `account` SET  `username` = ?, `email` = ?, `numberphone` = ?, `address` = ? WHERE `id` = ?";
             stm = con.prepareStatement(sql);
             stm.setString(1, accounts.getUserName());
             stm.setString(2, accounts.getEmail());
@@ -236,29 +252,24 @@ public class AccountDao {
             stm.setInt(5, accounts.getId());
 
             stm.executeUpdate();
-            f = true;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return f;
     }
 
-    // Doi mat khau
-    public boolean updatePassword(Accounts accounts) {
+    // Đổi mật khẩu
+    public void updatePassword(Accounts accounts) {
         PreparedStatement stm = null;
         Connection con = null;
-        boolean f = false;
         try {
             con = DBConnection.getConnection();
-            String sql = "UPDATE `account` SET  `password`=? WHERE `id` = ?";
+            String sql = "UPDATE `account` SET  `password` = ? WHERE `id` = ?";
             stm = con.prepareStatement(sql);
             stm.setString(1, accounts.getPassword());
             stm.setInt(2, accounts.getId());
             stm.executeUpdate();
-            f = true;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return f;
     }
 }
